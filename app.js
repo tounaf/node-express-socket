@@ -16,10 +16,16 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
     console.log('Un client est connecté !');
     socket.emit('message', 'Vous êtes bien connecté');
+    
     socket.on('message', function(message){
-        console.log('message du client:' + message);
+        console.log(socket.pseudo + 'message du client:' + message);
+    })
+
+    socket.on('petit_nouveau', function(pseudo){
+        socket.pseudo = pseudo;
     })
     socket.broadcast.emit('message','A tous');
+
 });
 
 
