@@ -19,6 +19,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('message', function(message){
         console.log('message du client:' + message);
     })
+    socket.broadcast.emit('message','A tous');
 });
 
 
